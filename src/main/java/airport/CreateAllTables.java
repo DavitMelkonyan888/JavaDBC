@@ -53,7 +53,7 @@ public class CreateAllTables {
                     "FOREIGN KEY (trip_id) REFERENCES Trip(trip_number),\n" + "  " +
                     "FOREIGN KEY (passenger_id) REFERENCES Passenger(id)\n" + ");");
         } catch (SQLException e){
-
+            System.out.println(e.getMessage());
         }finally{
             try{
                 st.close();
