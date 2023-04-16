@@ -1,4 +1,4 @@
-package airport;
+package airport_jdbc;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -44,12 +44,12 @@ public class InsertDataToAllTables {
                     statement.close();
                 }
             } catch (IOException e) {
-            
+                System.out.println(e.getMessage());
             } finally {
                 try {
                     companyReader.close();
                 } catch (Exception e) {
-                
+                    System.out.println(e.getMessage());
                 }
             }
             
@@ -70,12 +70,12 @@ public class InsertDataToAllTables {
                     statement.close();
                 }
             } catch (IOException e) {
-            
+                System.out.println(e.getMessage());
             } finally {
                 try {
                     addressReader.close();
                 } catch (Exception e) {
-                
+                    System.out.println(e.getMessage());
                 }
             }
             
@@ -100,12 +100,12 @@ public class InsertDataToAllTables {
                     statement.close();
                 }
             } catch (IOException e) {
-            
+                System.out.println(e.getMessage());
             } finally {
                 try {
                     passengerReader.close();
                 } catch (Exception e) {
-                
+                    System.out.println(e.getMessage());
                 }
             }
             // read and insert data from Trip input file
@@ -133,12 +133,12 @@ public class InsertDataToAllTables {
                     statement.close();
                 }
             } catch (IOException e) {
-            
+                System.out.println(e.getMessage());
             } finally {
                 try {
                     tripReader.close();
                 } catch (Exception e) {
-                
+                    System.out.println(e.getMessage());
                 }
             }
             
@@ -163,21 +163,22 @@ public class InsertDataToAllTables {
                     statement.close();
                 }
             } catch (IOException e) {
-            
+                System.out.println(e.getMessage());
             } finally {
                 try {
                     passInTripReader.close();
                 } catch (Exception e) {
-                
+                    System.out.println(e.getMessage());
                 }
             }
             
         } catch (SQLException e) {
-        
+            System.out.println(e.getMessage());
         } finally {
             try {
                 connection.close();
             } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
     }
