@@ -1,19 +1,33 @@
 package airport_hibernate.pojo_classes;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table ( name = "passenger" )
 public class Passenger {
     
-    private int    id;
-    private String name;
-    private String phone;
-    private int    addressId;
+    @Id
+    @GeneratedValue
+    @Column ( name = "id" )
+    private int               id;
+    @Column ( name = "name" )
+    private String            name;
+    @Column ( name = "phone" )
+    private String            phone;
+    @ManyToOne
+    @JoinColumn ( name = "address_id" )
+    private Address           address;
+    @OneToMany ( mappedBy = "passenger" )
+    private List <PassInTrip> passInTrips;
     
     public Passenger () {}
     
-    public Passenger (int id, String name, String phone, int addressId) {
-        this.id = id;
+    public Passenger (String name, String phone, Address address) {
         this.name = name;
         this.phone = phone;
-        this.addressId = addressId;
+        this.address = address;
     }
     
     public int getId () {
@@ -40,11 +54,11 @@ public class Passenger {
         this.phone = phone;
     }
     
-    public int getAddressId () {
-        return addressId;
+    public Address getAddress () {
+        return address;
     }
     
-    public void setAddressId (int addressId) {
-        this.addressId = addressId;
+    public void setAddress (Address address) {
+        this.address = address;
     }
 }

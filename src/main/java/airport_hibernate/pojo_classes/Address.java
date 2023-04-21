@@ -1,15 +1,28 @@
 package airport_hibernate.pojo_classes;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table ( name = "address" )
 public class Address {
     
-    private int    id;
-    private String country;
-    private String city;
+    @Id
+    @GeneratedValue
+    @Column ( name = "id" )
+    private int              id;
+    @Column ( name = "country" )
+    private String           country;
+    @Column ( name = "city" )
+    private String           city;
+    @OneToMany ( mappedBy = "address" )
+    private List <Passenger> passengers;
+    
     
     public Address () {}
     
-    public Address (int id, String country, String city) {
-        this.id = id;
+    public Address (String country, String city) {
         this.country = country;
         this.city = city;
     }

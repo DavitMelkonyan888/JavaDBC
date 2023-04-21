@@ -16,7 +16,7 @@ public class CompanyService {
             resultSet.next();
             return new Company(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3));
         } catch(SQLException e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
@@ -31,7 +31,7 @@ public class CompanyService {
             }
             return set;
         } catch(SQLException e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
@@ -46,7 +46,7 @@ public class CompanyService {
             }
             return set;
         } catch(SQLException e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
@@ -57,7 +57,7 @@ public class CompanyService {
         try{
             count = SQLActions.update(sql);
         } catch(SQLException e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         if (count == 1) return true;
         return false;
@@ -70,7 +70,7 @@ public class CompanyService {
             ResultSet resultSet = SQLActions.select(sql);
             if (resultSet.next()) t = false;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         if (!t) {
             System.out.println("This Row Is Connected With Other Row(s) In Table Trip, Please Delete That First!!!!!");
@@ -81,7 +81,7 @@ public class CompanyService {
         try{
             count = SQLActions.update(sql);
         } catch(SQLException e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         if (count == 1) return true;
         return false;

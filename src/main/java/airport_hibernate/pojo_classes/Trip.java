@@ -1,41 +1,56 @@
 package airport_hibernate.pojo_classes;
 
-import java.sql.Timestamp;
+import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+import java.util.List;
+
+@Entity
+@Table ( name = "trip" )
 public class Trip {
     
-    private int       tripNumber;
-    private int       companyId;
-    private String    townFrom;
-    private String    townTo;
-    private Timestamp timeOut;
-    private Timestamp timeIn;
+    @Id
+    @Column ( name = "id" )
+    private int               id;
+    @ManyToOne
+    @JoinColumn ( name = "company_id" )
+    private Company           company;
+    @Column ( name = "town_from" )
+    private String            townFrom;
+    @Column ( name = "town_to" )
+    private String            townTo;
+    @Column ( name = "time_out" )
+    private Timestamp         timeOut;
+    @Column ( name = "time_in" )
+    private Timestamp         timeIn;
+    @OneToMany ( mappedBy = "trip" )
+    private List <PassInTrip> passInTrips;
     
     public Trip () {}
     
-    public Trip (int tripNumber, int companyId, String townFrom, String townTo, Timestamp timeOut, Timestamp timeIn) {
-        this.tripNumber = tripNumber;
-        this.companyId = companyId;
+    public Trip (int id, Company company, String townFrom, String townTo, Timestamp timeOut, Timestamp timeIn) {
+        this.id = id;
+        this.company = company;
         this.townFrom = townFrom;
         this.townTo = townTo;
         this.timeOut = timeOut;
         this.timeIn = timeIn;
     }
     
-    public int getTripNumber () {
-        return tripNumber;
+    public int getId () {
+        return id;
     }
     
-    public void setTripNumber (int tripNumber) {
-        this.tripNumber = tripNumber;
+    public void setId (int id) {
+        this.id = id;
     }
     
-    public int getCompanyId () {
-        return companyId;
+    public Company getCompany () {
+        return company;
     }
     
-    public void setCompanyId (int companyId) {
-        this.companyId = companyId;
+    public void setCompany (Company company) {
+        this.company = company;
     }
     
     public String getTownFrom () {

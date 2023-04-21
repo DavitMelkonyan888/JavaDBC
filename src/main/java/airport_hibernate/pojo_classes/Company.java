@@ -1,17 +1,28 @@
 package airport_hibernate.pojo_classes;
 
-import java.sql.Date;
+import jakarta.persistence.*;
 
+import java.sql.Date;
+import java.util.List;
+
+@Entity
+@Table ( name = "company" )
 public class Company {
     
-    private int    id;
-    private String name;
-    private Date   foundingDate;
+    @Id
+    @GeneratedValue
+    @Column ( name = "id" )
+    private int              id;
+    @Column ( name = "name" )
+    private String           name;
+    @Column ( name = "founding_date" )
+    private Date             foundingDate;
+    @OneToMany ( mappedBy = "company" )
+    private List <Trip> trips;
     
     public Company () {}
     
-    public Company (int id, String name, Date foundingDate) {
-        this.id = id;
+    public Company (String name, Date foundingDate) {
         this.name = name;
         this.foundingDate = foundingDate;
     }
